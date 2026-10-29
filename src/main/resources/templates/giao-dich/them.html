@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Thêm giao dịch</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/style.css}"/></head>
+<body class="container mt-4">
+<div class="row justify-content-center">
+<div class="col-md-6">
+<h2 class="mb-3 text-center">Thêm mới giao dịch</h2>
+<form th:action="@{/giao-dich/them}" th:object="${giaoDich}" method="post">
+    <div class="mb-3 row"><label class="col-sm-4 col-form-label">Mã GD</label><div class="col-sm-8"><input type="text" class="form-control" th:field="*{maGiaoDich}"/><span class="text-danger" th:errors="*{maGiaoDich}"></span></div></div>
+    <div class="mb-3 row"><label class="col-sm-4 col-form-label">Khách hàng</label><div class="col-sm-8"><select class="form-select" name="maKhachHang"><option th:each="k : ${khachHangs}" th:value="${k.maKhachHang}" th:text="${k.tenKhachHang}"></option></select></div></div>
+    <div class="mb-3 row"><label class="col-sm-4 col-form-label">Loại DV</label><div class="col-sm-8"><select class="form-select" th:field="*{loaiDichVu}"><option value="Đất">Đất</option><option value="Nhà và đất">Nhà và đất</option></select><span class="text-danger" th:errors="*{loaiDichVu}"></span></div></div>
+    <div class="mb-3 row"><label class="col-sm-4 col-form-label">Ngày GD</label><div class="col-sm-8"><input type="date" class="form-control" th:field="*{ngayGiaoDich}"/><span class="text-danger" th:errors="*{ngayGiaoDich}"></span></div></div>
+    <div class="mb-3 row"><label class="col-sm-4 col-form-label">Đơn giá</label><div class="col-sm-8"><input type="number" class="form-control" th:field="*{donGia}"/><span class="text-danger" th:errors="*{donGia}"></span></div></div>
+    <div class="mb-3 row"><label class="col-sm-4 col-form-label">Diện tích</label><div class="col-sm-8"><input type="number" step="0.01" class="form-control" th:field="*{dienTich}"/><span class="text-danger" th:errors="*{dienTich}"></span></div></div>
+<div class="d-flex justify-content-center gap-2 mt-3">
+    <button type="submit" class="btn btn-primary">Thêm mới</button>
+    <a th:href="@{/}" class="btn btn-secondary">Quay lại</a>
+</div>
+</form>
+</html>
